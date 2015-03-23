@@ -1,2 +1,2 @@
-# compiladores_2015.1
+# Compiladores
 Repositório para os trabalhos da disciplina de Compiladores
