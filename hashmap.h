@@ -1,5 +1,6 @@
-#define HASHMAP_SIZE 30
+#define HASHMAP_SIZE 400
 #define PRIME_NUMBER 31
+#define DEBUG 0
 
 typedef struct {
 	char* element;

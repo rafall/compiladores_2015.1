@@ -6,9 +6,6 @@
 int main () {
 
 	initTable();
-	char word[30];
-	gets(word);
-	addElement(word);
 
 	return 0;
 	
@@ -21,6 +18,31 @@ int initTable() {
 	{
 		hashTable[i].element = NULL;
 	}
+	FILE* fp;
+	char* word;
+	word = (char*) malloc (10*sizeof(char));
+
+	fp = fopen("palavras_reservadas.txt", "r");
+	
+	if(fp == NULL)
+	{
+		printf("ERROR: Não conseguiu ler o arquivo\n");
+		return 1;
+	}
+	
+	if(DEBUG) printf("Inicializando\n");
+
+	while(!feof(fp))
+	{
+		fgets(word, 10, fp);
+		if(DEBUG) printf("Leu: %s\n", word);
+		if(addElement(word))
+		{
+			return 1;
+		}
+	}
+	
+	fclose(fp);
 	return 0;
 }
 
@@ -33,7 +55,7 @@ int getHashCode(char* s)
 	for (int i = 0; i < strlen(s); i++)
 	    hash = (PRIME_NUMBER * hash + s[i]) % HASHMAP_SIZE;
 
-	printf("Hash Code de %s eh %d\n", s, hash);
+	if(DEBUG) printf("Hash Code de %s eh %d\n", s, hash);
 
 	return hash;
 }
@@ -54,7 +76,7 @@ int addElement(char* s)
 
 	hashTable[hash].element = (char*) malloc (strlen(s)*sizeof(char));
 	strcpy(hashTable[hash].element, s);
-	printf("Elemento %s adicionado\n", hashTable[hash].element);
+	if(DEBUG) printf("Elemento %s adicionado\n", hashTable[hash].element);
 
 	return 0;
 }

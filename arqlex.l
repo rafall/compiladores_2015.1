@@ -4,6 +4,8 @@
 	/* need this for printf(), fopen() and stdin below */
 #include <stdio.h>
 #include <string.h>
+#include "hashmap.h"
+	
 %}
 NUMERO_INT 			-?[1-9][0-9]*
 NUMERO_REAL			-?[1-9][0-9]*.[0-9]+
@@ -74,6 +76,7 @@ char *reservadas[16] = {"begin",
 
 int main(int argc, char *argv[])
 {
+	initTable();
 	++argv, --argc; /* skip over program name */
 	if (argc > 0)
 		yyin = fopen(argv[0], "r");
