@@ -1,15 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "hashmap.h"
 
-#define HASHMAP_SIZE 30
-#define PRIME_NUMBER 31
+int main () {
 
-typedef struct {
-	char* element;
-} hashmap;
+	initTable();
+	char word[30];
+	gets(word);
+	addElement(word);
 
-hashmap* hashTable;
+	return 0;
+	
+}
 
 // Inicializa a hashTable alocando espaço
 int initTable() {
@@ -55,15 +58,3 @@ int addElement(char* s)
 
 	return 0;
 }
-
-int main () {
-
-	initTable();
-	char word[30];
-	gets(word);
-	addElement(word);
-
-	return 0;
-	
-}
-
