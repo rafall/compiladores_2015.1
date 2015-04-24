@@ -368,8 +368,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 25
-#define YY_END_OF_BUFFER 26
+#define YY_NUM_RULES 24
+#define YY_END_OF_BUFFER 25
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -379,7 +379,7 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[37] =
     {   0,
-        0,    0,   26,   21,   21,   23,   18,    8,    7,    9,
+        0,    0,   25,   21,   21,   23,   18,    8,    7,    9,
        17,    3,   19,    1,    6,    4,   13,   15,   14,   20,
        21,   23,   16,    1,    0,    1,    5,   11,   12,   10,
        20,    0,   22,    2,    1,    0
@@ -483,7 +483,8 @@ char *yytext;
 #include <math.h>
 	/* need this for printf(), fopen() and stdin below */
 #include <stdio.h>
-#line 487 "lex.yy.c"
+#include <string.h>
+#line 488 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -670,10 +671,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 28 "arqlex.l"
+#line 29 "arqlex.l"
 
 
-#line 677 "lex.yy.c"
+#line 678 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -758,131 +759,126 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 30 "arqlex.l"
+#line 31 "arqlex.l"
 printf("%s - numero_int\n", yytext);
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 31 "arqlex.l"
+#line 32 "arqlex.l"
 printf("%s - numero_real\n", yytext);
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 32 "arqlex.l"
+#line 33 "arqlex.l"
 printf("%s - .\n", yytext);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 33 "arqlex.l"
+#line 34 "arqlex.l"
 printf("%s - ;\n", yytext);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 34 "arqlex.l"
+#line 35 "arqlex.l"
 printf("%s - :=\n", yytext);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 35 "arqlex.l"
+#line 36 "arqlex.l"
 printf("%s - :\n", yytext);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 36 "arqlex.l"
+#line 37 "arqlex.l"
 printf("%s - )\n", yytext);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 37 "arqlex.l"
+#line 38 "arqlex.l"
 printf("%s - (\n", yytext);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 38 "arqlex.l"
+#line 39 "arqlex.l"
 printf("%s - ,\n", yytext);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 39 "arqlex.l"
+#line 40 "arqlex.l"
 printf("%s - >=\n", yytext);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 40 "arqlex.l"
+#line 41 "arqlex.l"
 printf("%s - <=\n", yytext);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 41 "arqlex.l"
+#line 42 "arqlex.l"
 printf("%s - <>\n", yytext);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 42 "arqlex.l"
+#line 43 "arqlex.l"
 printf("%s - <\n", yytext);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 43 "arqlex.l"
+#line 44 "arqlex.l"
 printf("%s - >\n", yytext);
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 44 "arqlex.l"
+#line 45 "arqlex.l"
 printf("%s - =\n", yytext);
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 45 "arqlex.l"
+#line 46 "arqlex.l"
 printf("%s - +\n", yytext);
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 46 "arqlex.l"
+#line 47 "arqlex.l"
 printf("%s - -\n", yytext);
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 47 "arqlex.l"
+#line 48 "arqlex.l"
 printf("%s - *\n", yytext);
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 48 "arqlex.l"
+#line 49 "arqlex.l"
 printf("%s - /\n", yytext);
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 49 "arqlex.l"
-printf("%s - ID\n", yytext);
+#line 50 "arqlex.l"
+verifica(yytext);
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 50 "arqlex.l"
+#line 51 "arqlex.l"
 
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 52 "arqlex.l"
+#line 53 "arqlex.l"
 ; 	/* eat up one-line comments */
 	YY_BREAK
 case 23:
 /* rule 23 can match eol */
 YY_RULE_SETUP
-#line 53 "arqlex.l"
+#line 54 "arqlex.l"
 ; 	/* eat up white space */
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 54 "arqlex.l"
-
-	YY_BREAK
-case 25:
-YY_RULE_SETUP
-#line 55 "arqlex.l"
+#line 56 "arqlex.l"
 ECHO;
 	YY_BREAK
-#line 886 "lex.yy.c"
+#line 882 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1880,9 +1876,26 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 55 "arqlex.l"
+#line 56 "arqlex.l"
 
 
+
+char *reservadas[16] = {"begin",
+						"const",
+						"do",
+						"end",
+						"for",
+						"if",
+						"integer",
+						"procedure",
+						"program",
+						"read",
+						"real",
+						"then",
+						"to",
+						"var",
+						"while",
+						"write"};
 
 int main(int argc, char *argv[])
 {
@@ -1895,3 +1908,17 @@ int main(int argc, char *argv[])
 }
 int yywrap(){return 1;}
 
+int verifica(char *token)
+{
+	int i;
+	for (i = 0; i < 16; i++)
+	{
+		if(strcmp(token,reservadas[i])==0)
+		{
+			printf("%s - %s\n", token, reservadas[i]);
+			return 0;
+		}
+	}
+	printf("%s - ID\n", token);
+	return 0;
+}

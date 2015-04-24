@@ -3,6 +3,7 @@
 #include <math.h>
 	/* need this for printf(), fopen() and stdin below */
 #include <stdio.h>
+#include <string.h>
 %}
 NUMERO_INT 			-?[1-9][0-9]*
 NUMERO_REAL			-?[1-9][0-9]*.[0-9]+
@@ -46,13 +47,30 @@ ID 					[a-z][a-z0-9]*
 {SUBTRACAO}			printf("%s - -\n", yytext);
 {MULTIPLICACAO}		printf("%s - *\n", yytext);
 {DIVISAO}			printf("%s - /\n", yytext);
-{ID}				printf("%s - ID\n", yytext);
+{ID}				verifica(yytext);
 .
 
 "{"[^}\n]*"}"	; 	/* eat up one-line comments */
 [ \t\n]+	; 	/* eat up white space */
-.
+
 %%
+
+char *reservadas[16] = {"begin",
+						"const",
+						"do",
+						"end",
+						"for",
+						"if",
+						"integer",
+						"procedure",
+						"program",
+						"read",
+						"real",
+						"then",
+						"to",
+						"var",
+						"while",
+						"write"};
 
 int main(int argc, char *argv[])
 {
@@ -64,3 +82,18 @@ int main(int argc, char *argv[])
 	yylex();
 }
 int yywrap(){return 1;}
+
+int verifica(char *token)
+{
+	int i;
+	for (i = 0; i < 16; i++)
+	{
+		if(strcmp(token,reservadas[i])==0)
+		{
+			printf("%s - %s\n", token, reservadas[i]);
+			return 0;
+		}
+	}
+	printf("%s - ID\n", token);
+	return 0;
+}
