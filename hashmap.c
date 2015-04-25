@@ -12,15 +12,17 @@
 // }
 
 // Inicializa a hashTable alocando espaço
-int initTable() {
+int initTable() 
+{
 	hashTable = (hashmap*) malloc (HASHMAP_SIZE*sizeof(hashmap));
 	for(int i = 0; i < HASHMAP_SIZE; i++)
 	{
 		hashTable[i].element = NULL;
 	}
+
 	FILE* fp;
 	char* word;
-	word = (char*) malloc (10*sizeof(char));
+	word = (char*) malloc (TOKEN_MAX_SIZE*sizeof(char));
 
 	fp = fopen("palavras_reservadas.txt", "r");
 	
@@ -34,8 +36,16 @@ int initTable() {
 
 	while(!feof(fp))
 	{
-		fgets(word, 10, fp);
+		fgets(word, TOKEN_MAX_SIZE, fp);
+		
+		// É necessário apagar o \n que ele lê
+		// se não apagar, o código hash sai diferente
+		if(0 < strlen(word) && '\n' != word[0])
+        {
+            word[strlen(word) - 1] = '\0';
+        }
 		if(DEBUG) printf("Leu: %s\n", word);
+		if(DEBUG) printf("Que tem tamanho: %lu\n", strlen(word));
 		if(addElement(word))
 		{
 			return 1;
@@ -92,7 +102,6 @@ int searchElement(char* s)
 		printf("%s - %s\n", s, hashTable[hash].element);
 		return 0;
 	}
-
 	else
 	{
 		printf("%s - ID\n", s);
