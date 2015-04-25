@@ -11,3 +11,4 @@ hashmap* hashTable;
 int initTable();
 int getHashCode(char* );
 int addElement(char* );
+int searchElement(char* );
