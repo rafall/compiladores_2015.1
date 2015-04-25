@@ -3,13 +3,13 @@
 #include <string.h>
 #include "hashmap.h"
 
-int main () {
+// int main () {
 
-	initTable();
+// 	initTable();
 
-	return 0;
+// 	return 0;
 	
-}
+// }
 
 // Inicializa a hashTable alocando espaço
 int initTable() {
@@ -79,4 +79,20 @@ int addElement(char* s)
 	if(DEBUG) printf("Elemento %s adicionado\n", hashTable[hash].element);
 
 	return 0;
+}
+
+int searchElement(char* s)
+{
+	int hash = getHashCode(s);
+	if(hashTable[hash].element != NULL)
+	{
+		printf("%s - %s\n", s, hashTable.element[hash]);
+		return 0;
+	}
+
+	else
+	{
+		printf("%s - ID\n", token);
+		return 1;
+	}
 }

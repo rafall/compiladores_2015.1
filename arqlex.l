@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "hashmap.h"
-	
+
 %}
 NUMERO_INT 			-?[1-9][0-9]*
 NUMERO_REAL			-?[1-9][0-9]*.[0-9]+
@@ -49,7 +49,7 @@ ID 					[a-z][a-z0-9]*
 {SUBTRACAO}			printf("%s - -\n", yytext);
 {MULTIPLICACAO}		printf("%s - *\n", yytext);
 {DIVISAO}			printf("%s - /\n", yytext);
-{ID}				verifica(yytext);
+{ID}				searchElement(yytext);
 .
 
 "{"[^}\n]*"}"	; 	/* eat up one-line comments */
