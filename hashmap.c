@@ -86,13 +86,13 @@ int searchElement(char* s)
 	int hash = getHashCode(s);
 	if(hashTable[hash].element != NULL)
 	{
-		printf("%s - %s\n", s, hashTable.element[hash]);
+		printf("%s - %s\n", s, hashTable[hash].element);
 		return 0;
 	}
 
 	else
 	{
-		printf("%s - ID\n", token);
+		printf("%s - ID\n", s);
 		return 1;
 	}
 }
