@@ -81,6 +81,9 @@ int addElement(char* s)
 	return 0;
 }
 
+// Busca o token que foi lido como ID no Flex
+// Se encontrar na tabela hash, ele imprime o token
+// Senão, ele diz que é um ID
 int searchElement(char* s)
 {
 	int hash = getHashCode(s);
