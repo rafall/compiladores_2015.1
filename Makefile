@@ -8,3 +8,6 @@ compile: arqlex.l
 clean:
 	@rm -rf myscanner
 	@rm -rf lex.yy.c
+
+test:
+	./myscanner < example.txt
