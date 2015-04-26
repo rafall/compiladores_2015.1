@@ -7,8 +7,11 @@
 #include "hashmap.h"
 
 %}
+INTEIROGRANDEDEMAIS	(-?[1-9][0-9]*){11,}
 NUMERO_INT 			-?[1-9][0-9]*
-NUMERO_REAL			-?[1-9][0-9]*.[0-9]+
+NUMERO_REAL			-?[0-9]+"."[0-9]+
+IDGRANDEDEMAIS		([a-zA-Z][a-z0-9A-Z]*){50,}
+ID 					[a-zA-Z][a-z0-9A-Z]*
 PONTO				\.
 PONTOEVIRGULA		;
 ATRIBUICAO			:=
@@ -22,16 +25,22 @@ DIFERENTE			<>
 MENOR				<
 MAIOR				>
 IGUAL				=
-SOMA				'+'
-SUBTRACAO			\-
-MULTIPLICACAO		'*'
-DIVISAO				\/
-ID 					[a-z][a-z0-9]*
+SOMA				"+"
+SUBTRACAO			"-"
+MULTIPLICACAO		"*"
+DIVISAO				"/"
+NUMEROMALFORMADO	-?[1-9]+[a-zA-Z][a-z0-9A-Z]*
+NUMEROMALFORMADO2	-?[0-9]+[a-zA-Z][a-z0-9A-Z]*"."[a-z0-9A-Z]*
+NUMEROMALFORMADO3	-?[0-9]+"."[0-9]*[a-zA-Z][a-z0-9A-Z]*
+CARACTERINVALIDO	.
 
 %%
 
+{INTEIROGRANDEDEMAIS}	printf("%s - Inteiro grande demais\n", yytext);
 {NUMERO_INT}		printf("%s - numero_int\n", yytext);
 {NUMERO_REAL}		printf("%s - numero_real\n", yytext);
+{IDGRANDEDEMAIS}	printf("%s - Identificador grande demais\n", yytext);
+{ID}				searchElement(yytext);
 {PONTO}				printf("%s - .\n", yytext);
 {PONTOEVIRGULA}		printf("%s - ;\n", yytext);
 {ATRIBUICAO}		printf("%s - :=\n", yytext);
@@ -49,30 +58,15 @@ ID 					[a-z][a-z0-9]*
 {SUBTRACAO}			printf("%s - -\n", yytext);
 {MULTIPLICACAO}		printf("%s - *\n", yytext);
 {DIVISAO}			printf("%s - /\n", yytext);
-{ID}				searchElement(yytext);
-.
+{NUMEROMALFORMADO}	printf("%s - Numero inteiro mal formado\n", yytext);
+{NUMEROMALFORMADO2}|{NUMEROMALFORMADO3}	printf("%s - Numero real mal formado\n", yytext);
+"{"[^}\n]*"}"	; 	/* elimina comentarios de uma linha */
+"{"[^}\n]*			printf("%s - Comentario inacabado\n", yytext);
+[ \t\n]+	; 	/* elimina espaços em branco */
+{CARACTERINVALIDO}	printf("%s - Caracter Invalido\n", yytext);
 
-"{"[^}\n]*"}"	; 	/* eat up one-line comments */
-[ \t\n]+	; 	/* eat up white space */
 
 %%
-
-char *reservadas[16] = {"begin",
-						"const",
-						"do",
-						"end",
-						"for",
-						"if",
-						"integer",
-						"procedure",
-						"program",
-						"read",
-						"real",
-						"then",
-						"to",
-						"var",
-						"while",
-						"write"};
 
 int main(int argc, char *argv[])
 {
@@ -85,18 +79,3 @@ int main(int argc, char *argv[])
 	yylex();
 }
 int yywrap(){return 1;}
-
-int verifica(char *token)
-{
-	int i;
-	for (i = 0; i < 16; i++)
-	{
-		if(strcmp(token,reservadas[i])==0)
-		{
-			printf("%s - %s\n", token, reservadas[i]);
-			return 0;
-		}
-	}
-	printf("%s - ID\n", token);
-	return 0;
-}

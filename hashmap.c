@@ -15,7 +15,8 @@
 int initTable() 
 {
 	hashTable = (hashmap*) malloc (HASHMAP_SIZE*sizeof(hashmap));
-	for(int i = 0; i < HASHMAP_SIZE; i++)
+	int i;
+	for(i = 0; i < HASHMAP_SIZE; i++)
 	{
 		hashTable[i].element = NULL;
 	}
@@ -61,8 +62,8 @@ int initTable()
 int getHashCode(char* s)
 {
 	int hash = 0;
-	
-	for (int i = 0; i < strlen(s); i++)
+	int i;
+	for (i = 0; i < strlen(s); i++)
 	    hash = (PRIME_NUMBER * hash + s[i]) % HASHMAP_SIZE;
 
 	if(DEBUG) printf("Hash Code de %s eh %d\n", s, hash);
