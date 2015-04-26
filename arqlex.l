@@ -1,7 +1,5 @@
 %{
-	/* need this for the call to atof() below */
 #include <math.h>
-	/* need this for printf(), fopen() and stdin below */
 #include <stdio.h>
 #include <string.h>
 #include "hashmap.h"

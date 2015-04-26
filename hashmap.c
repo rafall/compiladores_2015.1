@@ -98,7 +98,7 @@ int addElement(char* s)
 int searchElement(char* s)
 {
 	int hash = getHashCode(s);
-	if(hashTable[hash].element != NULL)
+	if(hashTable[hash].element != NULL && !strcmp(hashTable[hash].element, s))
 	{
 		printf("%s - %s\n", s, hashTable[hash].element);
 		return 0;
