@@ -1,3 +1,15 @@
+/*
+* SCC0217 Linguagens de programação e compiladores
+* Professor Diego Raphael Amancio
+* Trabalho 1: Analisador Léxico
+*********************************************************
+* Alunos:
+* 
+* Guilherme Barranco Piva					nUSP: 7696462
+* Guilherme Lustri de Oliveira				nUSP: 7656492
+* Rafael Hiroki de Figueiroa Minami			nUSP: 7573187
+*********************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
