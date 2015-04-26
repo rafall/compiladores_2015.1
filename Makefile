@@ -10,12 +10,12 @@ clean:
 	@rm -rf lex.yy.c
 
 test:
-	./myscanner < example1.txt > saida1.txt
+	./myscanner < example.txt > saida1.txt
 	./myscanner < example2.txt > saida2.txt
 	./myscanner < example3.txt > saida3.txt
 
 test1:
-	./myscanner < example1.txt > saida1.txt
+	./myscanner < example.txt > saida1.txt
 	cat saida1.txt
 
 test2:
