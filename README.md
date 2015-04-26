@@ -1,22 +1,22 @@
 # Compiladores
-Repositório para os trabalhos da disciplina de Compiladores
+##### Repositório para os trabalhos da disciplina de Compiladores
 
 Guilherme Barranco Piva - nUSP: 7696462
+
+Guilherme Lustri de Oliveira - nUSP: 7656492
+
 Rafael Hiroki de Figueiroa Minami - nUSP: 7573187
 
 
 
-
-Instalar LEX FLEX no LINUX:
+#### Instalar LEX FLEX no LINUX:
 
 `sudo apt-get install byacc flex`
 
-Compilar e Rodar Arquivo:
+#### Compilar:
 
-`flex arqlex.l`
+`make`
 
-`gcc lex.yy.c`
+#### Rodar o teste:
 
-`./a.out [<input.txt >output.txt]`
-
-Referência: https://github.com/ldorelli/2012_compiladores_icmc_proj
+`make test`

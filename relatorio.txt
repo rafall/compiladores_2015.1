@@ -10,6 +10,7 @@ Decisões de projeto:
 	* Número inteiro mal formado
 	* Número real mal formado
 	* Comentário em linha mal acabado
+	* Caracter inexistente
 
 Para compilar escrever make
 Para rodar o teste escrever make test
