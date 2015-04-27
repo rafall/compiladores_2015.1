@@ -9,7 +9,7 @@ INTEIROGRANDEDEMAIS	(-?[1-9][0-9]*){11,}
 NUMERO_INT 			-?[1-9][0-9]*
 NUMERO_REAL			-?[0-9]+"."[0-9]+
 IDGRANDEDEMAIS		([a-zA-Z][a-z0-9A-Z]*){50,}
-ID 					[a-zA-Z][a-z0-9A-Z]*
+ID 					[a-zA-Z][_a-z0-9A-Z]*
 PONTO				\.
 PONTOEVIRGULA		;
 ATRIBUICAO			:=
