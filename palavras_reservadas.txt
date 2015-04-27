@@ -1,6 +1,7 @@
 begin
 const
 do
+else
 end
 for
 if
