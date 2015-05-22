@@ -1,0 +1,22 @@
+program - program
+lalg - ID
+; - Ponto e virgula
+var - var
+a - ID
+, - Virgula
+minha_variavel - ID
+: - Dois pontos
+integer - integer
+; - Ponto e virgula
+begin - begin
+readd - ID
+( - Parenteses fechado
+a - ID
+, - Virgula
+@ - Caracter invalido. Linha: 5
+, - Virgula
+1.a23 - Numero mal formado. Linha: 5
+) - Parenteses aberto
+; - Ponto e virgula
+end - end
+. - Ponto
