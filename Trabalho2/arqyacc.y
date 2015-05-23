@@ -9,6 +9,7 @@
 %}
 // Tokens
 
+%start programa
 %token INTEIROGRANDEDEMAIS
 %token NUMERO_INT
 %token NUMERO_REAL
@@ -184,5 +185,6 @@ numero:		NUMERO_INT
 
 // Subrotinas
 
-
-
+int main (int argc, char** argv){
+	return yyparse();
+}

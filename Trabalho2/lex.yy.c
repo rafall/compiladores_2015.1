@@ -806,11 +806,12 @@ char *yytext;
 #include <stdio.h>
 #include <string.h>
 #include "hashmap.h"
+#include "y.tab.h"
 
 
 int yylineno;
 
-#line 814 "lex.yy.c"
+#line 815 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -997,10 +998,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 38 "arqlex.l"
+#line 39 "arqlex.l"
 
 
-#line 1004 "lex.yy.c"
+#line 1005 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -1085,156 +1086,156 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 40 "arqlex.l"
+#line 41 "arqlex.l"
 return INTEIROGRANDEDEMAIS;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 41 "arqlex.l"
+#line 42 "arqlex.l"
 return NUMERO_INT;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 42 "arqlex.l"
+#line 43 "arqlex.l"
 return NUMERO_REAL;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 43 "arqlex.l"
+#line 44 "arqlex.l"
 return IDGRANDEDEMAIS;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 44 "arqlex.l"
+#line 45 "arqlex.l"
 return searchElement(yytext);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 45 "arqlex.l"
+#line 46 "arqlex.l"
 return PONTO;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 46 "arqlex.l"
+#line 47 "arqlex.l"
 return PONTOEVIRGULA; 
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 47 "arqlex.l"
+#line 48 "arqlex.l"
 return ATRIBUICAO;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 48 "arqlex.l"
+#line 49 "arqlex.l"
 return DOISPONTOS;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 49 "arqlex.l"
+#line 50 "arqlex.l"
 return APARENTESES;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 50 "arqlex.l"
+#line 51 "arqlex.l"
 return FPARENTESES;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 51 "arqlex.l"
+#line 52 "arqlex.l"
 return VIRGULA;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 52 "arqlex.l"
+#line 53 "arqlex.l"
 return MAIORIGUAL;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 53 "arqlex.l"
+#line 54 "arqlex.l"
 return MENORIGUAL;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 54 "arqlex.l"
+#line 55 "arqlex.l"
 return DIFERENTE;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 55 "arqlex.l"
+#line 56 "arqlex.l"
 return MENOR;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 56 "arqlex.l"
+#line 57 "arqlex.l"
 return MAIOR;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 57 "arqlex.l"
+#line 58 "arqlex.l"
 return IGUAL;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 58 "arqlex.l"
+#line 59 "arqlex.l"
 return SOMA;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 59 "arqlex.l"
+#line 60 "arqlex.l"
 return SUBTRACAO;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 60 "arqlex.l"
+#line 61 "arqlex.l"
 return MULTIPLICACAO;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 61 "arqlex.l"
+#line 62 "arqlex.l"
 return DIVISAO;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 62 "arqlex.l"
+#line 63 "arqlex.l"
 return NUMEROMALFORMADO;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 63 "arqlex.l"
+#line 64 "arqlex.l"
 return NUMEROMALFORMADO;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 64 "arqlex.l"
+#line 65 "arqlex.l"
 ; 	/* elimina comentarios de uma linha */
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 65 "arqlex.l"
+#line 66 "arqlex.l"
 printf("%s - Comentario inacabado\n", yytext);
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 66 "arqlex.l"
+#line 67 "arqlex.l"
 ; 	/* elimina espaços em branco */
 	YY_BREAK
 case 28:
 /* rule 28 can match eol */
 YY_RULE_SETUP
-#line 67 "arqlex.l"
+#line 68 "arqlex.l"
 yylineno++;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 68 "arqlex.l"
+#line 69 "arqlex.l"
 return CARACTERINVALIDO;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 71 "arqlex.l"
+#line 72 "arqlex.l"
 ECHO;
 	YY_BREAK
-#line 1238 "lex.yy.c"
+#line 1239 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2232,7 +2233,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 71 "arqlex.l"
+#line 72 "arqlex.l"
 
 
 
