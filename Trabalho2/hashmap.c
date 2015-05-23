@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hashmap.h"
+#include "y.tab.h"
 
 extern int yylex(); 
 extern int yylineno;
