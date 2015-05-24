@@ -1,0 +1,16 @@
+Utilizamos o Flex para o trabalho
+Decisões de projeto:
+1. <palavra_reservada, palavra_reservada>
+
+2. Utilizamos uma tabela Hash para a busca das palavras reservadas. O algoritmo de busca hash tem tempo polinomial, portanto é muito rápido e eficiente.
+
+3. Tratamos os erros de:
+	* Tamanho de inteiro
+	* Tamanho de ID
+	* Número inteiro mal formado
+	* Número real mal formado
+	* Comentário em linha mal acabado
+	* Caracter inexistente
+
+Para compilar escrever make
+Para rodar o teste escrever make test
