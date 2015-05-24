@@ -2,8 +2,9 @@
 all: compile
 
 compile: arqlex.l 
+	yacc -d arqyacc.y
 	lex arqlex.l
-	gcc lex.yy.c hashmap.c -o myscanner
+	gcc lex.yy.c y.tab.c hashmap.c -o myscanner
 
 clean:
 	@rm -rf myscanner

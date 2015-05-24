@@ -14,11 +14,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hashmap.h"
+#include "y.tab.h"
 
 extern int yylex(); 
 extern int yylineno;
 extern char *yytext;
-
+/*
 int main(int argc, char *argv[])
 {
 	int ntoken, vtoken;
@@ -26,7 +27,7 @@ int main(int argc, char *argv[])
 	initTable();
 
 	// ntoken guarda o indice token retornado do analisador lexico
-	ntoken = yylex();
+	yyparse();
 
 	while(ntoken)
 	{
@@ -117,7 +118,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-
+*/
 // Inicializa a hashTable alocando espaço
 int initTable() 
 {
@@ -137,7 +138,7 @@ int initTable()
 	// Verifica se conseguiu abrir
 	if(fp == NULL)
 	{
-		printf("ERROR: Não conseguiu ler o arquivo\n");
+		printf("ERRO: Não conseguiu ler o arquivo\n");
 		return 1;
 	}
 	
@@ -198,9 +199,82 @@ int addElement(char* s)
 
 	hashTable[hash].element = (char*) malloc (strlen(s)*sizeof(char));
 	strcpy(hashTable[hash].element, s);
-	if(DEBUG) printf("Elemento %s adicionado\n", hashTable[hash].element);
+	assignID(hash);
+	if(DEBUG) printf("%s adicionado. Hash = %d\n", hashTable[hash].element,hash);
 
 	return 0;
+}
+
+void assignID(int h)
+{
+	if(!strcmp(hashTable[h].element,"begin"))
+	{
+		hashTable[h].id = T_BEGIN;
+	}
+	else if (!strcmp(hashTable[h].element,"const"))
+	{
+		hashTable[h].id = T_CONST;	
+	}
+	else if (!strcmp(hashTable[h].element,"do"))
+	{
+		hashTable[h].id = T_DO;	
+	}
+	else if (!strcmp(hashTable[h].element,"else"))
+	{
+		hashTable[h].id = T_ELSE;
+	}
+	else if (!strcmp(hashTable[h].element,"end"))
+	{
+		hashTable[h].id = T_END;
+	}
+	else if (!strcmp(hashTable[h].element,"for"))
+	{
+		hashTable[h].id = T_FOR;
+	}
+	else if (!strcmp(hashTable[h].element,"if"))
+	{
+		hashTable[h].id = T_IF;
+	}
+	else if (!strcmp(hashTable[h].element,"integer"))
+	{
+		hashTable[h].id = T_INTEGER;
+	}
+	else if (!strcmp(hashTable[h].element,"procedure"))
+	{
+		hashTable[h].id = T_PROCEDURE;
+	}
+	else if (!strcmp(hashTable[h].element,"program"))
+	{
+		hashTable[h].id = T_PROGRAM;
+	}
+	else if (!strcmp(hashTable[h].element,"read"))
+	{
+		hashTable[h].id = T_READ;
+	}
+	else if (!strcmp(hashTable[h].element,"real"))
+	{
+		hashTable[h].id = T_REAL;
+	}
+	else if (!strcmp(hashTable[h].element,"then"))
+	{
+		hashTable[h].id = T_THEN;
+	}
+	else if (!strcmp(hashTable[h].element,"to"))
+	{
+		hashTable[h].id = T_TO;
+	}
+	else if (!strcmp(hashTable[h].element,"var"))
+	{
+		hashTable[h].id = T_VAR;
+	}
+	else if (!strcmp(hashTable[h].element,"while"))
+	{
+		hashTable[h].id = T_WHILE;
+	}
+	else if (!strcmp(hashTable[h].element,"write"))
+	{
+		hashTable[h].id = T_WRITE;
+	}
 }
 
 // Busca o token que foi lido como ID no Flex
@@ -211,12 +285,12 @@ int searchElement(char* s)
 	int hash = getHashCode(s);
 	if(hashTable[hash].element != NULL && !strcmp(hashTable[hash].element, s))
 	{
-		printf("%s - %s\n", s, hashTable[hash].element);
-		return PALAVRARESERVADA;
+		printf("%s - %s ID: %d\n", s, hashTable[hash].element, hashTable[hash].id);
+		return hashTable[hash].id;
 	}
 	else
 	{
-		//printf("%s - ID\n", s);
-		return ID;
+		printf("%s - ID\n", s);
+		return T_ID;
 	}
 }

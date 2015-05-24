@@ -4,39 +4,11 @@
 #define TOKEN_MAX_SIZE 10
 
 typedef struct {
-	char* element;
+    char* element;
+    int id;
 } hashmap;
 
-enum tokens {
-INTEIROGRANDEDEMAIS = 1,
-NUMERO_INT,
-NUMERO_REAL,
-IDGRANDEDEMAIS,
-ID,
-PONTO,
-PONTOEVIRGULA,
-ATRIBUICAO,
-DOISPONTOS,
-APARENTESES,
-FPARENTESES,
-VIRGULA,
-MAIORIGUAL,
-MENORIGUAL,
-DIFERENTE,
-MENOR,
-MAIOR,
-IGUAL,
-SOMA,
-SUBTRACAO,
-MULTIPLICACAO,
-DIVISAO,
-NUMEROMALFORMADO,
-NUMEROMALFORMADO2,
-NUMEROMALFORMADO3,
-CARACTERINVALIDO,
-};
-
-#define PALAVRARESERVADA 300
+//#define PALAVRARESERVADA 300
 hashmap* hashTable;
 
 // Protótipos das funções
@@ -44,3 +16,4 @@ int initTable();
 int getHashCode(char* );
 int addElement(char* );
 int searchElement(char* );
+void assignID(int );
