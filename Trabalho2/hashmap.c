@@ -285,12 +285,12 @@ int searchElement(char* s)
 	int hash = getHashCode(s);
 	if(hashTable[hash].element != NULL && !strcmp(hashTable[hash].element, s))
 	{
-		printf("%s - %s ID: %d\n", s, hashTable[hash].element, hashTable[hash].id);
+		if(DEBUG) printf("%s - %s ID: %d\n", s, hashTable[hash].element, hashTable[hash].id);
 		return hashTable[hash].id;
 	}
 	else
 	{
-		printf("%s - ID\n", s);
+		if(DEBUG) printf("%s - ID\n", s);
 		return T_ID;
 	}
 }

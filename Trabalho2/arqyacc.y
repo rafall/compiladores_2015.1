@@ -4,6 +4,7 @@
     #include <string.h>
     #include "hashmap.h"
     int yylex(void);
+    int numErros;
     extern char *yytext;
     extern int yylineno;
     void yyerror(const char* );
@@ -316,7 +317,7 @@ int main(int argc, char *argv[])
 {
     initTable();
     yyparse();
-
+    printf("\nAnalise lexica e sintatica terminadas com %d erros\n", numErros);
     return 0;
 
 }
@@ -327,5 +328,6 @@ void yyerror(const char* msg)
     {
         printf("Erro sintatico: Linha %d. Era esperado %s, encontrado: %s\n", yylineno, msg, yytext);    
     }
+    numErros++;
     
 }
