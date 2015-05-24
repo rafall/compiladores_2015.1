@@ -9,9 +9,10 @@ Rafael Hiroki de Figueiroa Minami - nUSP: 7573187
 
 
 
-#### Instalar LEX FLEX no LINUX:
+#### Instalações necessárias no LINUX:
 
 `sudo apt-get install byacc flex`
+`sudo apt-get install bison`
 
 #### Compilar:
 
