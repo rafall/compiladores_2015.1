@@ -1,12 +1,6 @@
-program - program ID: 258
-lalg - ID
-var - var ID: 261
-a - ID
-integer - integer ID: 264
-begin - begin ID: 259
-read - read ID: 266
 Erro sintatico: Linha 5. Era esperado id, encontrado: )
 Erro sintatico: Linha 5. Era esperado id, encontrado: ;
-end - end ID: 260
 Erro sintatico: Linha 6. Era esperado id, encontrado: end
 Erro sintatico: Linha 6. Era esperado id, encontrado: .
+
+Analise lexica e sintatica terminadas com 5 erros

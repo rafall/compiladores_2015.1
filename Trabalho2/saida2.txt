@@ -1,11 +1,7 @@
-program - program ID: 258
-lalg - ID
-var - var ID: 261
-a - ID
-minha_variavel - ID
-integer - integer ID: 264
-begin - begin ID: 259
-readd - ID
-a - ID
-@ - Caracter Invalido
-end - end ID: 260
+Erro sintatico: Linha 3. Era esperado tipo, encontrado: ;
+Erro sintatico: Linha 5. Era esperado ), encontrado: ,
+Erro sintatico: Linha 5. Era esperado ;, encontrado: ,
+Erro lexico: @ - Caracter Invalido. Linha: 5
+Erro sintatico: Linha 5. Era esperado cmd, encontrado: ;
+
+Analise lexica e sintatica terminadas com 6 erros
