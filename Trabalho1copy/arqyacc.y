@@ -5,6 +5,7 @@
     #include "hashmap.h"
     int yylex(void);
     extern char *yytext;
+    extern int yylineno;
     void yyerror(const char* );
 %}
 
@@ -323,7 +324,7 @@ void yyerror(const char* msg)
 {
     if(strcmp(msg, "syntax error"))
     {
-        fprintf(stderr, "Erro sintatico: %s\n", msg);    
+        printf("Erro sintatico: Linha %d. Era esperado %s, encontrado: %s\n", yylineno, msg, yytext);    
     }
     
 }
