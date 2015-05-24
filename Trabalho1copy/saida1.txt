@@ -1,8 +1,0 @@
-program - program ID: 258
-lalg - ID
-var - var ID: 261
-a - ID
-integer - integer ID: 264
-begin - begin ID: 259
-read - read ID: 266
-end - end ID: 260
