@@ -198,7 +198,7 @@ int addElement(char* s)
 
 	hashTable[hash].element = (char*) malloc (strlen(s)*sizeof(char));
 	strcpy(hashTable[hash].element, s);
-	if(DEBUG) printf("Elemento %s adicionado\n", hashTable[hash].element);
+	if(DEBUG) printf("%s adicionado. Hash = %d\n", hashTable[hash].element,hash);
 
 	return 0;
 }
@@ -212,7 +212,7 @@ int searchElement(char* s)
 	if(hashTable[hash].element != NULL && !strcmp(hashTable[hash].element, s))
 	{
 		printf("%s - %s\n", s, hashTable[hash].element);
-		return PALAVRARESERVADA;
+		return hash;
 	}
 	else
 	{
