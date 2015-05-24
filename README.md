@@ -12,6 +12,7 @@ Rafael Hiroki de Figueiroa Minami - nUSP: 7573187
 #### Instalações necessárias no LINUX:
 
 `sudo apt-get install byacc flex`
+
 `sudo apt-get install bison`
 
 #### Compilar:
