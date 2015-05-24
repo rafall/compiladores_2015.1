@@ -4,7 +4,7 @@
 #define TOKEN_MAX_SIZE 10
 
 typedef struct {
-    char* element;
+	char* element;
     int id;
 } hashmap;
 

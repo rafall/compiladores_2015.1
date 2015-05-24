@@ -13,13 +13,13 @@ int yylineno;
 
 %%
 
-(-?[1-9][0-9]*){11,}                        return T_INTEIROGRANDEDEMAIS;
+(-?[1-9][0-9]*){11,}                        {printf("Erro lexico: inteiro grande demais. Linha: %d\n", yylineno); return T_INTEIROGRANDEDEMAIS;}
 -?[1-9][0-9]*                               return T_NUMERO_INT;
 -?[0-9]+"."[0-9]+                           return T_NUMERO_REAL;
-([a-zA-Z][a-z0-9A-Z]*){20,}                 return T_IDGRANDEDEMAIS;
+([a-zA-Z][a-z0-9A-Z]*){20,}                 {printf("Erro lexico: ID grande demais. Linha: %d\n", yylineno); return T_IDGRANDEDEMAIS;}
 [a-zA-Z][_a-z0-9A-Z]*                       return searchElement(yytext);
-(\.)                                        {printf("%s - .\n", yytext); return T_PONTO;}
-(;)                                         {printf("%s - ;\n", yytext); return T_PONTOEVIRGULA; }
+(\.)                                        return T_PONTO;
+(;)                                         return T_PONTOEVIRGULA;
 (:=)                                        return T_ATRIBUICAO;
 (:)                                         return T_DOISPONTOS;
 (\))                                        return T_FPARENTESES;
@@ -38,11 +38,11 @@ int yylineno;
 -?[1-9]+[a-zA-Z][a-z0-9A-Z]*                return T_NUMEROMALFORMADO;
 -?[0-9]+[a-zA-Z][a-z0-9A-Z]*"."[a-z0-9A-Z]* return T_NUMEROMALFORMADO;
 -?[0-9]+"."[0-9]*[a-zA-Z][a-z0-9A-Z]*       return T_NUMEROMALFORMADO;
-"{"[^}\n]*"}"                               ;   /* elimina comentarios de uma linha */
-"{"[^}\n]*                                  printf("%s - Comentario inacabado\n", yytext);
-[ \t]+                                      ;   /* elimina espaços em branco */
+"{"[^}\n]*"}"                               ; 	/* elimina comentarios de uma linha */
+"{"[^}\n]*                                  {printf("Erro lexico: Comentario inacabado. Linha: %d\n", yylineno); return T_COMENTARIOINACABADO;}
+[ \t]+                                      ; 	/* elimina espaços em branco */
 [\n]+                                       yylineno++;
-.                                           {printf("%s - Caracter Invalido\n", yytext); return CARACTERINVALIDO;}
+.                                           {printf("Erro lexico: %s - Caracter Invalido. Linha: %d\n", yytext, yylineno); return T_CARACTERINVALIDO;}
 
 
 %%

@@ -19,7 +19,106 @@
 extern int yylex(); 
 extern int yylineno;
 extern char *yytext;
+/*
+int main(int argc, char *argv[])
+{
+	int ntoken, vtoken;
 
+	initTable();
+
+	// ntoken guarda o indice token retornado do analisador lexico
+	yyparse();
+
+	while(ntoken)
+	{
+		switch(ntoken)
+		{
+			case INTEIROGRANDEDEMAIS:
+				printf("Erro: Inteiro muito grande. Linha: %d\n", yylineno);
+				break;
+			case NUMERO_INT:
+				printf("%s - Numero inteiro\n", yytext);
+				break;
+			case NUMERO_REAL:
+				printf("%s - Numero real\n", yytext);
+				break;
+			case IDGRANDEDEMAIS:
+				printf("Erro: ID muito grande. Linha: %d\n", yylineno);
+				break;
+			case ID:
+				printf("%s - ID\n", yytext);
+				break;
+			case PONTO:
+				printf("%s - Ponto\n", yytext);
+				break;
+			case PONTOEVIRGULA:
+				printf("%s - Ponto e virgula\n", yytext);
+				break;
+			case ATRIBUICAO:
+				printf("%s - Atribuicao\n", yytext);
+				break;
+			case DOISPONTOS:
+				printf("%s - Dois pontos\n", yytext);
+				break;
+			case APARENTESES:
+				printf("%s - Parenteses aberto\n", yytext);
+				break;
+			case FPARENTESES:
+				printf("%s - Parenteses fechado\n", yytext);
+				break;
+			case VIRGULA:
+				printf("%s - Virgula\n", yytext);
+				break;
+			case MAIORIGUAL:
+				printf("%s - Maior igual\n", yytext);
+				break;
+			case MENORIGUAL:
+				printf("%s - Menor igual\n", yytext);
+				break;
+			case DIFERENTE:
+				printf("%s - Diferente\n", yytext);
+				break;
+			case MENOR:
+				printf("%s - Menor\n", yytext);
+				break;
+			case MAIOR:
+				printf("%s - Maior\n", yytext);
+				break;
+			case IGUAL:
+				printf("%s - Igual\n", yytext);
+				break;
+			case SOMA:
+				printf("%s - Soma\n", yytext);
+				break;
+			case SUBTRACAO:
+				printf("%s - Subtracao\n", yytext);
+				break;
+			case MULTIPLICACAO:
+				printf("%s - Multiplicacao\n", yytext);
+				break;
+			case DIVISAO:
+				printf("%s - Divisao\n", yytext);
+				break;
+			case NUMEROMALFORMADO:
+				printf("%s - Numero mal formado. Linha: %d\n", yytext, yylineno);
+				break;
+			case NUMEROMALFORMADO2:
+				printf("%s - Numero mal formado. Linha: %d\n", yytext, yylineno);
+				break;
+			case NUMEROMALFORMADO3:
+				printf("%s - Numero mal formado. Linha: %d\n", yytext, yylineno);
+				break;
+			case CARACTERINVALIDO:
+				printf("%s - Caracter invalido. Linha: %d\n", yytext, yylineno);
+				break;
+		}
+
+		ntoken = yylex();
+	}
+    return 0;
+}
+
+*/
 // Inicializa a hashTable alocando espaço
 int initTable() 
 {
@@ -101,7 +200,7 @@ int addElement(char* s)
 	hashTable[hash].element = (char*) malloc (strlen(s)*sizeof(char));
 	strcpy(hashTable[hash].element, s);
 	assignID(hash);
-	if(DEBUG) printf("%s adicionado. Hash = %d\n", hashTable[hash].element,hash);
+	if(DEBUG) printf("%s added to hashmap. Hash = %d\n", hashTable[hash].element,hash);
 
 	return 0;
 }

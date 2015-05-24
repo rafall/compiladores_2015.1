@@ -1,21 +1,12 @@
-program - program
+program - program ID: 258
 lalg - ID
-; - Ponto e virgula
-var - var
-+ - Soma
+var - var ID: 261
 a - ID
-: - Dois pontos
-integer - integer
-; - Ponto e virgula
-begin - begin
-read - read
-( - Parenteses fechado
-a - ID
-, - Virgula
-@ - Caracter invalido. Linha: 5
-, - Virgula
-1 - Numero inteiro
-) - Parenteses aberto
-; - Ponto e virgula
-end - end
-. - Ponto
+integer - integer ID: 264
+begin - begin ID: 259
+read - read ID: 266
+Erro sintatico: Linha 5. Era esperado id, encontrado: )
+Erro sintatico: Linha 5. Era esperado id, encontrado: ;
+end - end ID: 260
+Erro sintatico: Linha 6. Era esperado id, encontrado: end
+Erro sintatico: Linha 6. Era esperado id, encontrado: .
