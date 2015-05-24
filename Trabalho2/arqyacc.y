@@ -98,7 +98,7 @@ dc : dc_c dc_v dc_p {}
 
 /* Regra 4 <dc_c> ::= const ident = <numero> ; <dc_c> | lambda */
 dc_c : dc_c0 dc_c {}
-    |
+    | {} /* Vazio */
     ;
 
 dc_c0 : T_CONST {} T_ID dc_c1 {}
@@ -120,7 +120,7 @@ dc_c3 : T_PONTOEVIRGULA {}
 
 /* Regra 5 <dc_v> ::= var <variaveis> : <tipo_var> ; <dc_v> | lambda */
 dc_v : dc_v0 dc_v {}
-    |
+    | {} /* Vazio */
     ;
 
 dc_v0 : T_VAR variaveis {} T_DOISPONTOS tipo_var dc_v1 {}
@@ -144,12 +144,12 @@ variaveis : T_ID mais_var {}
 
 /* Regra 8 <mais_var> ::= , <variaveis> | lambda */
 mais_var : T_VIRGULA variaveis {}
-    | /*lambda*/ {}
+    | {} /* Vazio */
     ;
 
 /* Regra 9 <dc_p> ::= procedure ident <parametros> ; <corpo_p> <dc_p> | lambda */
 dc_p : dc_p0 {} dc_p
-    |
+    | {} /* Vazio */
     ;
 
 dc_p0 : T_PROCEDURE {} T_ID parametros {} dc_p1
@@ -163,7 +163,7 @@ dc_p1 : T_PONTOEVIRGULA corpo_p {}
 /* Regra 10 <parametros> ::= ( <lista_par> ) | lambda */
 parametros : T_APARENTESES lista_par T_FPARENTESES {}
     | T_APARENTESES lista_par error { yyclearin; yyerror(")"); }
-    | {}
+    | {} /* Vazio */
     ;
     
 /* Regra 11 <lista_par> ::= <variaveis> : <tipo_var> <mais_par> */
@@ -172,7 +172,7 @@ lista_par : variaveis T_DOISPONTOS tipo_var mais_par {}
 
 /* Regra 12 <mais_par> ::= ; <lista_par> | lambda */
 mais_par : T_PONTOEVIRGULA lista_par {}
-    | {}
+    | {} /* Vazio */
     ;
 
 /* Regra 13 <corpo_p> ::= <dc_loc> begin <comandos> end ; */
@@ -196,7 +196,7 @@ dc_loc : dc_v
 /* Regra 15 <lista_arg> ::= ( <argumentos> ) | lambda */
 lista_arg : T_APARENTESES argumentos T_FPARENTESES  {}
     | T_APARENTESES argumentos error { yyerror(")"); }
-    | {}
+    | {} /* Vazio */
     ;
 
 /* Regra 16 <argumentos> ::= ident <mais_ident> */
@@ -206,12 +206,12 @@ argumentos : T_ID mais_ident {}
     
 /* Regra 17 <mais_ident> ::= ; <argumentos> | lambda */
 mais_ident : T_PONTOEVIRGULA argumentos {}
-    | {}
+    | {} /* Vazio */
     ;
     
 /* Regra 18 <pfalsa> ::= else <cmd> | lambda */
 pfalsa : T_ELSE {} cmd
-    | /* empty */ 
+    | {} /* Vazio */
     ;
 
 /* Regra 19 <comandos> ::= <cmd> ; <comandos> | lambda */
@@ -268,12 +268,12 @@ expressao : termo outros_termos {}
 /* Regra 24 <op_un> ::= + | - | lambda */
 op_un : T_SOMA {}
     | T_SUBTRACAO {}
-    | {}
+    | {} /* Vazio */
     ;
 
 /* Regra 25 <outros_termos> ::= <op_ad> <termo> <outros_termos> | lambda */
 outros_termos : op_ad termo outros_termos {}
-    | {}
+    | {} /* Vazio */
     ;
 
 /* Regra 26 <op_ad> ::= + | - */
@@ -287,7 +287,7 @@ termo : op_un fator mais_fatores {}
     
 /* Regra 28 <mais_fatores> ::= <op_mul> <fator> <mais_fatores> | lambda */
 mais_fatores : op_mul fator mais_fatores {}
-    | {}
+    | {} /* Vazio */
     ;    
 
 /* Regra 29 <op_mul> ::= * | / */
@@ -321,7 +321,10 @@ int main(int argc, char *argv[])
     return 0;
 
 }
-
+/*
+Mensagem de erro que é mostrada quando ocorre um erro sintático
+Modo Pânico
+*/
 void yyerror(const char* msg) 
 {
     if(strcmp(msg, "syntax error"))
