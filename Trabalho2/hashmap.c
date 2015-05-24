@@ -168,8 +168,11 @@ int initTable()
 	return 0;
 }
 
-// Passa a palavra pelo algoritmo para gerar o numero do hash dela
-// retorna esse numero
+/*
+ Passa a palavra pelo algoritmo para gerar o numero do hash dela
+ retorna esse numero
+*/
+
 int getHashCode(char* s)
 {
 	int hash = 0;
@@ -183,10 +186,13 @@ int getHashCode(char* s)
 	return hash;
 }
 
-// Adiciona elemento na tabela hash
-// chama a função getHashCode que retorna o codigo hash de acordo
-// com a string passada. Verifica se aquela posição já foi ocupada.
-// Se não foi, adiciona na tabela
+/*
+ Adiciona elemento na tabela hash
+ chama a função getHashCode que retorna o codigo hash de acordo
+ com a string passada. Verifica se aquela posição já foi ocupada.
+ Se não foi, adiciona na tabela
+*/
+
 int addElement(char* s)
 {
 	int hash;
@@ -204,6 +210,10 @@ int addElement(char* s)
 
 	return 0;
 }
+
+/*
+Cada palavra reservada tem um id associado aos tokens correspondentes
+*/
 
 void assignID(int h)
 {
@@ -277,9 +287,12 @@ void assignID(int h)
 	}
 }
 
-// Busca o token que foi lido como ID no Flex
-// Se encontrar na tabela hash, ele imprime o token
-// Senão, ele diz que é um ID
+/*
+ Busca o token que foi lido como ID no Flex
+ Se encontrar na tabela hash, ele imprime o token
+ Senão, ele diz que é um ID
+ */
+
 int searchElement(char* s)
 {
 	int hash = getHashCode(s);
