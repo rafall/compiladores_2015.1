@@ -1,0 +1,6 @@
+Erro sintatico: Linha 5. Era esperado id, encontrado: )
+Erro sintatico: Linha 5. Era esperado id, encontrado: ;
+Erro sintatico: Linha 6. Era esperado id, encontrado: end
+Erro sintatico: Linha 6. Era esperado id, encontrado: .
+
+Analise lexica e sintatica terminadas com 5 erros

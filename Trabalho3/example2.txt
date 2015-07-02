@@ -1,0 +1,6 @@
+program lalg;
+{outro teste}
+var a, minha_variavel: ;
+begin
+readd(a,@,1.a23);
+end.
