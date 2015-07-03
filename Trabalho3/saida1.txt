@@ -4,3 +4,5 @@ Erro sintatico: Linha 6. Era esperado id, encontrado: end
 Erro sintatico: Linha 6. Era esperado id, encontrado: .
 
 Analise lexica e sintatica terminadas com 5 erros
+|Nro	Tipo	Nome		Valor Int	Valor Float	End Relativo	Contexto	Procedure	Ordem	|
+|0	2	  (null)	      -1	-1.000000	-1		0	                 -1334732176	|

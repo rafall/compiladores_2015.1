@@ -1,7 +1,0 @@
-Erro sintatico: Linha 3. Era esperado tipo, encontrado: ;
-Erro sintatico: Linha 5. Era esperado ), encontrado: ,
-Erro sintatico: Linha 5. Era esperado ;, encontrado: ,
-Erro lexico: @ - Caracter Invalido. Linha: 5
-Erro sintatico: Linha 5. Era esperado cmd, encontrado: ;
-
-Analise lexica e sintatica terminadas com 6 erros

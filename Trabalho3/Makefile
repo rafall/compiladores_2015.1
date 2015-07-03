@@ -4,7 +4,7 @@ all: compile
 compile:
 	yacc -d arqyacc.y
 	lex arqlex.l
-	gcc lex.yy.c y.tab.c hashmap.c -o myscanner
+	gcc lex.yy.c y.tab.c hashmap.c symbols.c -o myscanner
 
 clean:
 	@rm -rf myscanner

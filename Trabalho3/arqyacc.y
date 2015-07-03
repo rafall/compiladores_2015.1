@@ -3,6 +3,8 @@
     #include <stdlib.h>
     #include <string.h>
     #include "hashmap.h"
+    #include "symbols.h"
+    #define YYSTYPE char*
     int yylex(void);
     int numErros;
     extern char *yytext;
@@ -70,7 +72,7 @@ programa : T_PROGRAM programa1 {}
     | error T_PONTO { yyerror("program");}
     ;
 
-programa1 : T_ID {} programa2 {}
+programa1 : T_ID {insereProgram ($1);} programa2 {}
     | error T_PONTOEVIRGULA { yyerror("id");} corpo programa3
     | error { yyerror("id"); } corpo programa3
     | error T_PONTO { yyerror("id");}
@@ -316,8 +318,10 @@ numero : T_NUMERO_INT {}
 int main(int argc, char *argv[])
 {
     initTable();
+    alocaTabelaSimbolos();
     yyparse();
     printf("\nAnalise lexica e sintatica terminadas com %d erros\n", numErros);
+    printTabela();
     return 0;
 
 }
