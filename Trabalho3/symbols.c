@@ -125,34 +125,15 @@ int removeLocalVars()
     return NAO_EXISTE;
 }
 
-int insereConstInt (char *nome, int valor, int contexto)
+int insereConst (char *nome, int contexto)
 {
     int retorno;
     simbolo p;
     p.nome=nome;
     p.tipo = CONST_INT;
     p.contexto = contexto;
-    p.valori=valor;
     p.end_relativo=getEndRelativo();
     p.valorf=-1.0;
-    p.procedure=malloc(1*sizeof(char));
-    p.procedure[0]='\0';
-    retorno = insere(p);
-    if(retorno ==OK)
-        ++numero_simbolos;
-    return retorno;
-}
-
-int insereConstReal (char *nome, double valor, int contexto)
-{
-    int retorno;
-    simbolo p;
-    p.nome=nome;
-    p.tipo = CONST_REAL;
-    p.contexto = contexto;
-    p.valorf=valor;
-    p.end_relativo=getEndRelativo();
-    p.valori=-1;
     p.procedure=malloc(1*sizeof(char));
     p.procedure[0]='\0';
     retorno = insere(p);
@@ -198,7 +179,7 @@ int insereProgram (char *nome)
 }
 
 
-int insereVarInt (char *nome, int contexto)
+int insereVar (char *nome, int contexto)
 {
     int retorno;
     simbolo p;
@@ -216,57 +197,12 @@ int insereVarInt (char *nome, int contexto)
     return retorno;
 }
 
-int insereVarReal (char *nome, int contexto)
-{
-    int retorno;
-    simbolo p;
-    p.nome=nome;
-    p.tipo = VAR_REAL;
-    p.contexto = contexto;
-    p.end_relativo=getEndRelativo();
-    p.valori=-1;
-    p.valorf=-1.0;
-    p.procedure=malloc(1*sizeof(char));
-    p.procedure[0]='\0';
-    retorno = insere(p);
-    if(retorno ==OK)
-        ++numero_simbolos;
-    return retorno;
-}
-
-int insereParamInt (char *nome, int contexto, char *proc, int ordem)
+int insereParam (char *nome, int contexto, char *proc, int ordem)
 {
     int i=0,retorno;
     simbolo p;
     p.nome=nome;
     p.tipo = PARAM_INT;
-    p.contexto = contexto;
-    p.end_relativo=getEndRelativo();
-    p.ordem=ordem;
-    p.procedure=proc;
-    p.valori=-1;
-    p.valorf=-1.0;
-    retorno = insere(p);
-    if(retorno ==OK)
-    {
-        ++numero_simbolos;
-        
-        while(i<numero_simbolos && strcmp(tabela[i].nome,proc)<=0)
-        {
-            if(strcmp(tabela[i].nome,proc)==0 && tabela[i].tipo == PROCEDURE)
-                tabela[i].ordem = tabela[i].ordem +1;
-            ++i;
-        }
-    }
-    return retorno;
-}
-
-int insereParamReal (char *nome, int contexto, char *proc, int ordem)
-{
-    int i=0,retorno;
-    simbolo p;
-    p.nome=nome;
-    p.tipo = PARAM_REAL;
     p.contexto = contexto;
     p.end_relativo=getEndRelativo();
     p.ordem=ordem;

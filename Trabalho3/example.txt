@@ -1,6 +1,6 @@
 program lalg;
 {entrada}
-var a: integer;
+var a: integer; a: integer;
 begin
 read();
 end.
