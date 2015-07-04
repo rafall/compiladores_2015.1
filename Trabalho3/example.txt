@@ -2,5 +2,8 @@ program lalg;
 {entrada}
 var a: integer;
 begin
+procedure g(a);
+begin
+end;
 read();
 end.

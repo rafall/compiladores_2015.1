@@ -1,7 +1,9 @@
-Erro sintatico: Linha 3. Era esperado tipo, encontrado: ;
-Erro sintatico: Linha 5. Era esperado ), encontrado: ,
-Erro sintatico: Linha 5. Era esperado ;, encontrado: ,
+Erro sintatico: Linha 3. Era esperado :, encontrado: ;
 Erro lexico: @ - Caracter Invalido. Linha: 5
-Erro sintatico: Linha 5. Era esperado cmd, encontrado: ;
+Erro sintatico: Linha 6. Era esperado begin, encontrado: end
 
-Analise lexica e sintatica terminadas com 6 erros
+Analise lexica, sintatica e semantica terminadas com 3 erros
+
+table de symbols:
+|Nro	Tipo	name		Valor Int	Valor Float	End Relativo	context	Procedure	order	|
+|0	2	  (null)	      -1	-1.000000	-1		0	                 -551750240	|

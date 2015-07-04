@@ -1,6 +1,12 @@
-Erro sintatico: Linha 5. Era esperado id, encontrado: )
-Erro sintatico: Linha 5. Era esperado id, encontrado: ;
-Erro sintatico: Linha 6. Era esperado id, encontrado: end
-Erro sintatico: Linha 6. Era esperado id, encontrado: .
+Erro sintatico: Linha 5. Era esperado ;, encontrado: g
+Erro sintatico: Linha 5. Era esperado cmd, encontrado: ;
+Erro sintatico: Linha 8. Era esperado id, encontrado: )
+Erro sintatico: Linha 8. Era esperado id, encontrado: ;
+Erro sintatico: Linha 9. Era esperado id, encontrado: end
+Erro sintatico: Linha 9. Era esperado id, encontrado: .
 
-Analise lexica e sintatica terminadas com 5 erros
+Analise lexica, sintatica e semantica terminadas com 8 erros
+
+table de symbols:
+|Nro	Tipo	name		Valor Int	Valor Float	End Relativo	context	Procedure	order	|
+|0	2	  (null)	      -1	-1.000000	-1		0	                 -936326400	|
