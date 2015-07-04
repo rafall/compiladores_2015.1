@@ -4,117 +4,117 @@
 #include "symbols.h"
 
 int prox_end_relativo=0;
-int numero_simbolos=0;
+int numero_symbols=0;
 
-int getEndRelativo()
+int getRelAddress()
 {
     int ret=prox_end_relativo;
     prox_end_relativo++;
     return ret;
 }
 
-void alocaTabelaSimbolos()
+void createSymbolTable()
 {
-  tabela = (simbolo *) malloc(MAXLENGTH * sizeof(simbolo)); 
+  table = (symbol *) malloc(MAXLENGTH * sizeof(symbol)); 
 }
 
-void realocaTabelaSimbolos(int novo_tamanho)
+void realocSymbolTable(int newSize)
 {
-    realoca(&tabela, novo_tamanho);
+    realoca(&table, newSize);
 }
 
-void realoca (simbolo **p, int novo_tamanho)
+void realoca (symbol **p, int newSize)
 {
-    simbolo *realocado;
-    realocado = realloc ((*p), novo_tamanho * sizeof(simbolo));
+    symbol *realocado;
+    realocado = realloc ((*p), newSize * sizeof(symbol));
     (*p) = realocado;
     
 }
 
-int insere (simbolo p)
+int insert (symbol p)
 {
    int i=0,j;
-   while(i<numero_simbolos && strcmp(tabela[i].nome,p.nome)<0)
+   while(i<numero_symbols && strcmp(table[i].name,p.name)<0)
     ++i;
 
-         /*caso exista alguma entrada na tabela de simbolos com o mesmo nome, deve-se verificar se eh permitido*/
-if(i<numero_simbolos && strcmp(tabela[i].nome,p.nome)==0)
+         /*caso exista alguma entrada na tabela de symbols com o mesmo name, deve-se verificar se eh permitido*/
+if(i<numero_symbols && strcmp(table[i].name,p.name)==0)
 {
-                 /*se as variaveis tem o mesmo tipo e pertencem ao mesmo escopo. ERRO: redeclaracao de variavel*/
-   while(i<numero_simbolos && strcmp(tabela[i].nome,p.nome)==0){
-    if(tabela[i].tipo == p.tipo && tabela[i].contexto == p.contexto && p.tipo!=PARAM_INT && p.tipo!=PARAM_REAL)
-        return REDECLARACAO;
-    else if(tabela[i].tipo == p.tipo && tabela[i].contexto == p.contexto && (p.tipo==PARAM_INT || p.tipo!=PARAM_REAL) && strcmp(tabela[i].procedure,p.procedure)==0)
-        return REDECLARACAO_PARAM;
+                 /*se as variaveis tem o mesmo tipo e pertencem ao mesmo escopo. ERRO: redefinição de variavel*/
+   while(i<numero_symbols && strcmp(table[i].name,p.name)==0){
+    if(table[i].tipo == p.tipo && table[i].context == p.context && p.tipo!=PARAM_INT && p.tipo!=PARAM_REAL)
+        return REDEFINITION;
+    else if(table[i].tipo == p.tipo && table[i].context == p.context && (p.tipo==PARAM_INT || p.tipo!=PARAM_REAL) && strcmp(table[i].procedure,p.procedure)==0)
+        return REDEFINITION_PARAM;
     
-    if(tabela[i].tipo != p.tipo && tabela[i].contexto == p.contexto && (tabela[i].tipo == PARAM_REAL || tabela[i].tipo ==PARAM_INT))
-       return REDECLARACAO_PARAM;
+    if(table[i].tipo != p.tipo && table[i].context == p.context && (table[i].tipo == PARAM_REAL || table[i].tipo ==PARAM_INT))
+       return REDEFINITION_PARAM;
    
                         /*se as variaveis nao tem o mesmo tipo, isso so eh permitido se alguma delas for PROGRAM ou PROCEDURE. ERRO: tipos conflitantes*/
-   if(tabela[i].tipo != p.tipo && tabela[i].tipo != PROGRAM && tabela[i].tipo !=PROCEDURE && p.tipo != PROGRAM && p.tipo !=PROCEDURE && tabela[i].contexto == p.contexto)
-    return CONFLITO;
+   if(table[i].tipo != p.tipo && table[i].tipo != PROGRAM && table[i].tipo !=PROCEDURE && p.tipo != PROGRAM && p.tipo !=PROCEDURE && table[i].context == p.context)
+    return CONFLICT;
 
 i++;
 }
 }
 
-for(j=numero_simbolos;j>i;--j)
-  tabela[j]= tabela[j-1];
+for(j=numero_symbols;j>i;--j)
+  table[j]= table[j-1];
 
-tabela[i]=p;
+table[i]=p;
 return OK;
 }
-int busca (char *nome,int tipo,int contexto)
+int search (char *name,int tipo,int context)
 {
     int i=0;
 
-    while(i<numero_simbolos && strcmp(tabela[i].nome,nome)<0)
+    while(i<numero_symbols && strcmp(table[i].name,name)<0)
         ++i;
     
-    if(i<numero_simbolos && strcmp(tabela[i].nome,nome)==0)
+    if(i<numero_symbols && strcmp(table[i].name,name)==0)
     {
-        while(i<numero_simbolos && strcmp(tabela[i].nome,nome)==0){
-            if(tabela[i].contexto==contexto){
-                if((tabela[i].tipo==VAR_INT || tabela[i].tipo==PARAM_INT)  && tipo==EXPRESSAO) return INTEGER;
-                if((tabela[i].tipo==VAR_REAL || tabela[i].tipo==PARAM_REAL) && tipo==EXPRESSAO) return REAL;
-                if((tabela[i].tipo==VAR_INT || tabela[i].tipo==PARAM_INT)  && tipo==ATTR) return INTEGER;
-                if((tabela[i].tipo==VAR_REAL || tabela[i].tipo==PARAM_REAL) && tipo==ATTR) return REAL;
+        while(i<numero_symbols && strcmp(table[i].name,name)==0){
+            if(table[i].context==context){
+                if((table[i].tipo==VAR_INT || table[i].tipo==PARAM_INT)  && tipo==EXPRESSAO) return INTEGER;
+                if((table[i].tipo==VAR_REAL || table[i].tipo==PARAM_REAL) && tipo==EXPRESSAO) return REAL;
+                if((table[i].tipo==VAR_INT || table[i].tipo==PARAM_INT)  && tipo==ATTR) return INTEGER;
+                if((table[i].tipo==VAR_REAL || table[i].tipo==PARAM_REAL) && tipo==ATTR) return REAL;
             }
-            if(tabela[i].tipo==PROCEDURE && tipo==PROCEDURE) return tabela[i].ordem;
-            if(tabela[i].tipo==CONST_INT  && tipo==EXPRESSAO) return INTEGER;
-            if(tabela[i].tipo==CONST_REAL  && tipo==EXPRESSAO) return REAL;
+            if(table[i].tipo==PROCEDURE && tipo==PROCEDURE) return table[i].order;
+            if(table[i].tipo==CONST_INT  && tipo==EXPRESSAO) return INTEGER;
+            if(table[i].tipo==CONST_REAL  && tipo==EXPRESSAO) return REAL;
             
-            if(tipo==ATTR && (tabela[i].tipo==CONST_INT || tabela[i].tipo==CONST_REAL)){
+            if(tipo==ATTR && (table[i].tipo==CONST_INT || table[i].tipo==CONST_REAL)){
                 return CONST_FALSE;
             }
             i++;
         }
     }
     
-    return NAO_EXISTE;
+    return NEXITS;
 }
 
-int buscaTipoParam(char *procedure,int ordem)
+int searchParam(char *procedure,int order)
 {
     int i=0;
-    while(i<numero_simbolos){
-        if(strcmp(tabela[i].procedure,procedure)==0 && tabela[i].ordem==ordem){
-            if(tabela[i].tipo==PARAM_INT) return INTEGER;
-            if(tabela[i].tipo==PARAM_REAL) return REAL;
+    while(i<numero_symbols){
+        if(strcmp(table[i].procedure,procedure)==0 && table[i].order==order){
+            if(table[i].tipo==PARAM_INT) return INTEGER;
+            if(table[i].tipo==PARAM_REAL) return REAL;
         }
         i++;
     }
     
-    return NAO_EXISTE;
+    return NEXITS;
 }
 
 int removeLocalVars()
 {
     int i=0;
-    while(i<numero_simbolos){
-        if(tabela[i].contexto==1){
-            if(tabela[i].tipo!=PARAM_INT && tabela[i].tipo!=PARAM_REAL && tabela[i].tipo!=PROCEDURE){
-                removeTabela(tabela[i]);
+    while(i<numero_symbols){
+        if(table[i].context==1){
+            if(table[i].tipo!=PARAM_INT && table[i].tipo!=PARAM_REAL && table[i].tipo!=PROCEDURE){
+                removeTable(table[i]);
                 fflush(stdout);
                 i--;
             }
@@ -122,129 +122,129 @@ int removeLocalVars()
         i++;
     }
     
-    return NAO_EXISTE;
+    return NEXITS;
 }
 
-int insereConst (char *nome, int contexto)
+int insertConst (char *name, int context)
 {
     int retorno;
-    simbolo p;
-    p.nome=nome;
+    symbol p;
+    p.name=name;
     p.tipo = CONST_INT;
-    p.contexto = contexto;
-    p.end_relativo=getEndRelativo();
+    p.context = context;
+    p.end_relativo=getRelAddress();
     p.valorf=-1.0;
     p.procedure=malloc(1*sizeof(char));
     p.procedure[0]='\0';
-    retorno = insere(p);
+    retorno = insert(p);
     if(retorno ==OK)
-        ++numero_simbolos;
+        ++numero_symbols;
     return retorno;
 }
 
-int insereProcedure (char *nome, int contexto)
+int insertProcedure (char *name, int context)
 {
     int retorno;
-    simbolo p;
-    p.nome=nome;
+    symbol p;
+    p.name=name;
     p.tipo = PROCEDURE;
     p.valorf=-1;
     p.valori=-1;
-    p.contexto = contexto;
+    p.context = context;
     p.procedure=malloc(1*sizeof(char));
     p.procedure[0]='\0';
-    p.ordem=0;
-    retorno = insere(p);
+    p.order=0;
+    retorno = insert(p);
     if(retorno ==OK)
-        ++numero_simbolos;
+        ++numero_symbols;
     return retorno;
 }
 
-int insereProgram (char *nome)
+int insertProgram (char *name)
 {
     int retorno;
-    simbolo p;
-    p.nome=nome;
+    symbol p;
+    p.name=name;
     p.tipo = PROGRAM;
     p.valorf=-1;
     p.valori=-1;
-    p.contexto = 0;
+    p.context = 0;
     p.end_relativo=-1;
     p.procedure=malloc(1*sizeof(char));
     p.procedure[0]='\0';
-    retorno = insere(p);
+    retorno = insert(p);
     if(retorno ==OK)
-        ++numero_simbolos;
+        ++numero_symbols;
     return retorno;
 }
 
 
-int insereVar (char *nome, int contexto)
+int insertVar (char *name, int context)
 {
     int retorno;
-    simbolo p;
-    p.nome=nome;
+    symbol p;
+    p.name=name;
     p.tipo = VAR_INT;
-    p.contexto = contexto;
-    p.end_relativo=getEndRelativo();
+    p.context = context;
+    p.end_relativo=getRelAddress();
     p.valori=-1;
     p.valorf=-1.0;
     p.procedure=malloc(1*sizeof(char));
     p.procedure[0]='\0';
-    retorno = insere(p);
+    retorno = insert(p);
     if(retorno ==OK)
-        ++numero_simbolos;
+        ++numero_symbols;
     return retorno;
 }
 
-int insereParam (char *nome, int contexto, char *proc, int ordem)
+int insertParam (char *name, int context, char *proc, int order)
 {
     int i=0,retorno;
-    simbolo p;
-    p.nome=nome;
+    symbol p;
+    p.name=name;
     p.tipo = PARAM_INT;
-    p.contexto = contexto;
-    p.end_relativo=getEndRelativo();
-    p.ordem=ordem;
+    p.context = context;
+    p.end_relativo=getRelAddress();
+    p.order=order;
     p.procedure=proc;
     p.valori=-1;
     p.valorf=-1.0;
-    retorno = insere(p);
+    retorno = insert(p);
     if(retorno ==OK)
     {
-        ++numero_simbolos;
+        ++numero_symbols;
         
-        while(i<numero_simbolos && strcmp(tabela[i].nome,proc)<=0)
+        while(i<numero_symbols && strcmp(table[i].name,proc)<=0)
         {
-            if(strcmp(tabela[i].nome,proc)==0 && tabela[i].tipo == PROCEDURE)
-                tabela[i].ordem = tabela[i].ordem +1;
+            if(strcmp(table[i].name,proc)==0 && table[i].tipo == PROCEDURE)
+                table[i].order = table[i].order +1;
             ++i;
         }
     }
     return retorno;
 }
 
-int removeTabela(simbolo p)
+int removeTable(symbol p)
 {
    int i=0,j;
-   while(i<numero_simbolos && strcmp(tabela[i].nome,p.nome)!= 0)
+   while(i<numero_symbols && strcmp(table[i].name,p.name)!= 0)
     ++i;
      /*saiu porque encontrou*/
-if(i<numero_simbolos)
+if(i<numero_symbols)
 {
-  for(j=i;j<numero_simbolos-1;++j)
-      tabela[j]= tabela[j+1];
-  numero_simbolos--;
+  for(j=i;j<numero_symbols-1;++j)
+      table[j]= table[j+1];
+  numero_symbols--;
   prox_end_relativo--;
   return 1;
 }
 return 0;
 }
 
-void printTabela(){
+void printTable(){
     int i;
-    printf("|Nro\tTipo\tNome\t\tValor Int\tValor Float\tEnd Relativo\tContexto\tProcedure\tOrdem\t|\n");
-    for(i=0;i<numero_simbolos; i++){
-        printf("|%d\t%d\t%8s\t%8d\t%lf\t%d\t\t%d\t%16s %8d\t|\n",i,tabela[i].tipo,tabela[i].nome, tabela[i].valori, tabela[i].valorf, tabela[i].end_relativo, tabela[i].contexto,tabela[i].procedure, tabela[i].ordem);
+    printf("|Nro\tTipo\tname\t\tValor Int\tValor Float\tEnd Relativo\tcontext\tProcedure\torder\t|\n");
+    for(i=0;i<numero_symbols; i++){
+        printf("|%d\t%d\t%8s\t%8d\t%lf\t%d\t\t%d\t%16s %8d\t|\n",i,table[i].tipo,table[i].name, table[i].valori, table[i].valorf, table[i].end_relativo, table[i].context,table[i].procedure, table[i].order);
     }
 }

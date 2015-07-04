@@ -11,7 +11,7 @@
     extern int yylineno;
     void yyerror(const char* );
     void yyerror2(const char* );
-    int contexto=0;
+    int context=0;
     int ret, contparametros;
     char listavar[400];
     char *str;
@@ -81,7 +81,7 @@ programa : T_PROGRAM programa1 {}
 | error T_PONTO { yyerror("program");}
 ;
 
-programa1 : T_ID {insereProgram ($1);} programa2 {}
+programa1 : T_ID {insertProgram ($1);} programa2 {}
 | error T_PONTOEVIRGULA { yyerror("id");} corpo programa3
 | error { yyerror("id"); } corpo programa3
 | error T_PONTO { yyerror("id");}
@@ -110,10 +110,10 @@ dc : dc_c dc_v dc_p {}
 /* Regra 4 <dc_c> ::= const ident = <numero> ; <dc_c> | lambda */
 dc_c : dc_c0 dc_c {
     int retorno;
-    retorno = insereConst ($1, contexto);
-    if(retorno==REDECLARACAO)
+    retorno = insertConst ($1, context);
+    if(retorno==REDEFINITION)
         yyerror2("Redeclaration of constants");
-    else if(retorno ==CONFLITO)
+    else if(retorno ==CONFLICT)
         yyerror2("Conflicting types");
 }
     | {} /* Vazio */
@@ -144,12 +144,12 @@ dc_v : dc_v0 dc_v {
     while(str!=NULL){
         cpystr=malloc(400 * sizeof(char));
         strcpy(cpystr,str);
-        retorno = insereVar (cpystr, contexto);
-        if(retorno==REDECLARACAO)
+        retorno = insertVar (cpystr, context);
+        if(retorno==REDEFINITION)
             yyerror2("Redeclaration of variables");
-        else if(retorno ==CONFLITO)
+        else if(retorno ==CONFLICT)
             yyerror2("Conflicting types");
-        else if(retorno == REDECLARACAO_PARAM)
+        else if(retorno == REDEFINITION_PARAM)
         {
             sprintf(msg, "Variable %s already declared as a parameter",cpystr );
             yyerror2(msg);
@@ -190,11 +190,11 @@ dc_p : dc_p0 {} dc_p
     | {} /* Vazio */
 ;
 
-dc_p0 : T_PROCEDURE {} T_ID parametros {contexto=1; if(insereProcedure ($2,contexto)!=OK) yyerror2("Redefinition of procedure"); lastprocedure=$2;} dc_p1
+dc_p0 : T_PROCEDURE {} T_ID parametros {context=1; if(insertProcedure ($2,context)!=OK) yyerror2("Redefinition of procedure"); lastprocedure=$2;} dc_p1
 | T_PROCEDURE error T_PONTOEVIRGULA { yyclearin; yyerror("id"); } corpo_p
 ;
 
-dc_p1 : T_PONTOEVIRGULA corpo_p {contexto=0;removeLocalVars($2);}
+dc_p1 : T_PONTOEVIRGULA corpo_p {context=0;removeLocalVars($2);}
 | error { yyclearin; yyerror(";"); } corpo_p
 ; 
 
@@ -208,18 +208,18 @@ parametros : T_APARENTESES lista_par T_FPARENTESES {}
 lista_par : variaveis T_DOISPONTOS tipo_var {
         str=malloc(400 * sizeof(char));
         str=strtok(listavar,",");
-        int ordem=1;
+        int order=1;
         while(str!=NULL){
             cpystr=malloc(400 * sizeof(char));
             strcpy(cpystr,str);
-            ret=insereParam (cpystr, contexto, lastprocedure, ordem);
-            if(ret == REDECLARACAO_PARAM)
+            ret=insertParam (cpystr, context, lastprocedure, order);
+            if(ret == REDEFINITION_PARAM)
             {
                 sprintf(msg, "Parameter %s already declared",cpystr );
                 yyerror2(msg);
             }
             str=strtok(NULL,",");
-            ordem++;
+            order++;
         }
         listavar[0]='\0';
 } mais_par {}
@@ -255,7 +255,7 @@ lista_arg : T_APARENTESES argumentos T_FPARENTESES  {}
 ;
 
 /* Regra 16 <argumentos> ::= ident <mais_ident> */
-argumentos : T_ID mais_ident {}
+argumentos : T_ID {strcat(listavar,$1); strcat(listavar,","); contparametros++;} mais_ident {}
 | error { yyclearin; yyerror("id"); } mais_ident {}
 ;
 
@@ -371,13 +371,12 @@ numero : T_NUMERO_INT {}
 int main(int argc, char *argv[])
 {
     initTable();
-    alocaTabelaSimbolos();
+    createSymbolTable();
     yyparse();
     printf("\nAnalise lexica, sintatica e semantica terminadas com %d erros\n", numErros);
-    printf("\nTabela de simbolos:\n");
-    printTabela();
+    printf("\ntable de symbols:\n");
+    printTable();
     return 0;
-
 }
 /*
 Mensagem de erro que é mostrada quando ocorre um erro sintático

@@ -1,6 +1,9 @@
 program lalg;
 {entrada}
-var a: integer; a: integer;
+var a: integer;
 begin
+procedure g(a);
+begin
+end;
 read();
 end.
